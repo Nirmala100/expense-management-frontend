@@ -1,0 +1,18 @@
+.editable-container {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: row;
+}
+.editable-text {
+    
+}
+
+.editable-container:hover .editable-button {
+    display: block;
+}
+
+.editable-button {
+    display: none;
+    cursor: pointer;
+    margin-left: 20px;
+}

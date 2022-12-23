@@ -1,0 +1,30 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f6f5f7;
+  align-items: center;
+  justify-content: center;
+}
+.card-container {
+  display: flex;
+  flex-direction: row;
+  background-color: #fff;
+  width: 80vh;
+  height: 50vh;
+}
+.card-container > .col {
+  flex: 1 1 auto;
+  width: 50%;
+}
+.image {
+  background-color: #bbc7a3;
+  display: flex;
+  align-items: center;
+}
+
+.image-container {
+    background-color: transparent;
+    margin: 0 auto;
+    color: #425b44;
+}
