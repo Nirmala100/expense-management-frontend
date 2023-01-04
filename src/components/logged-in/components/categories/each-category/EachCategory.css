@@ -1,0 +1,48 @@
+.collection-container {
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.collection-container .icon {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    background-color: #b9cdc9;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #15a19f;
+}
+
+.collection-container .text {
+    flex: 1;
+    padding: 0px 14px;
+}
+
+.collection-container .menu {
+    font-size: 1.5rem;
+    margin-left: 1px;
+    border-left: 1px dashed #c0c0c0;
+    cursor: pointer;
+    padding-left: 10px;
+    background-color: inherit;
+}
+
+.collection-container .menu a {
+    color: inherit;
+}
+
+.collection-container .menu .each-menu {
+    padding: 10px 10px;
+    font-size: 1.5rem;
+}
+
+.collection-container .menu .each-menu:hover {
+    background-color: #f1f1f1;
+}

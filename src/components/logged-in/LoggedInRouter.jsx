@@ -2,8 +2,6 @@ import { Routes, Route, Link } from "react-router-dom";
 import M from "materialize-css";
 import { HeaderBar } from "./components/general/HeaderBar";
 import Dashboard from "./components/dashboard/Dashboard";
-import Categories from "./components/categories/Categories";
-import Category from "./components/categories/Category";
 import CategoryAdd from "./components/categories/CategoryAdd";
 import About from "../About";
 import { FloatingActionButton } from "./components/general/FloatingActionButton";
@@ -27,11 +25,8 @@ export function LoggedInRouter() {
             {/* <div class="col s12 m8 l9"> */}
               <Routes>
                 <Route path="/" element={<Dashboard />} />
-                <Route path="categories" element={<Categories />}>
-                  <Route path=":catName" element={<Category />} />
-                </Route>
+                <Route path="categories" element={<CategoriesHome />} />
                 <Route path="categories/add" element={<CategoryAdd />} />
-                <Route path="categories/akash" element={<CategoriesHome />} />
                 <Route path="about" element={<About />} />
                 <Route path="*" element={<h1 className="not-found">Page Not Found</h1>} />
               </Routes>

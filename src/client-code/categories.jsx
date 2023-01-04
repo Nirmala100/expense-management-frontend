@@ -15,4 +15,51 @@ export default class CategoryApi {
       })
       .catch((error) => console.log(error));
   }
+
+  updateCategory(category) {
+    const url = `${URL}/${category.id}`;
+    return fetch(url, {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      body: JSON.stringify(category)
+    }).then((response) => {
+      console.log("Category update response", response);
+      return response.json();
+    })
+  }
+
+  createCategory(category) {
+    return fetch(URL, {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      body: JSON.stringify(category)
+    }).then((response) => {
+      console.log("New category created", response);
+      return response.json();
+    })
+  }
+
+  deleteCategory(category) {
+    const url = `${URL}/${category.id}`;
+    return fetch(url, {
+      method: "DELETE",
+      mode: "cors",
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      body: JSON.stringify(category)
+    }).then((response) => {
+      console.log("Category deleted", response);
+      return;
+    })
+  }
 }

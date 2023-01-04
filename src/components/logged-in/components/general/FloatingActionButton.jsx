@@ -25,11 +25,6 @@ export function FloatingActionButton() {
           </Link>
         </li>
         <li>
-          <Link to="categories/akash" class="btn-floating green">
-            <i class="material-icons">add_to_photos</i>
-          </Link>
-        </li>
-        <li>
           <Link to="expenses/add" class="btn-floating blue">
             <i class="material-icons">insert_chart</i>
           </Link>
