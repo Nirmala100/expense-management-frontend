@@ -1,6 +1,6 @@
 import React from "react";
 import featImg from "../../assets/img-main.jpg";
-import { redirect, useNavigate } from "react-router-dom";
+import { baseUrl } from "../../client-code/constant";
 
 class Register extends React.Component {
     constructor() {
@@ -28,16 +28,8 @@ class Register extends React.Component {
         event.preventDefault();
 
         if (this.validate()) {
-            console.log(this.state);
-            // let input ={};
-            //  input["name"] = "";
-            //  input["email"] = "";
-            //   input["password"] = "";
-            //   input["confirm_password"] = "";
-            alert("Form is being submitted");
-
             try {
-                let res = await fetch("http://localhost:8081/user", {
+                let res = await fetch(`${baseUrl}/user`, {
                     method: "POST",
                     body: JSON.stringify({
                         email: this.state.input.email,
@@ -45,13 +37,9 @@ class Register extends React.Component {
                         password: this.state.input.password,
                     }),
                 });
-                //console.log(res);
                 let resJson = await res.json();
                 if (res.status === 200) {
-
                     console.log("successfuly registered");
-                    // return redirect("/loggedIn");
-
                     this.props.onSignupSuccess();
                 } else {
                     console.log(resJson.error);
@@ -120,17 +108,18 @@ class Register extends React.Component {
     render() {
         return (
             <div className="wrapper">
-                <div className="card-container z-depth-4">
-                    <div className="row">
-                        <div className="col s6 image">
+                <div className="card-container-signup z-depth-4">
+                    <div className="col image">
+                        <div className="image-container">
                             <img className="img-feat" src={featImg} />
                         </div>
-                        <div className="col s6">
+                      </div>  
+                        <div className="col">
                             <form method="post" className="form" onSubmit={this.handleSubmit}>
                                 <h1>Sign up</h1>
                                 <h1>{this.state.errors.email}</h1>
                                 
-                                <label htmlFor="user-name">&nbsp;Name</label>
+                                <label htmlFor="user-name">Name</label>
                                 <input
                                     id="user-name"
                                     type="text"
@@ -141,7 +130,7 @@ class Register extends React.Component {
                                 />
 
                                 <div className="text-danger">{this.state.errors.name}</div>
-                                <label htmlFor="user-email">&nbsp;Email</label>
+                                <label htmlFor="user-email">Email</label>
                                 <input
                                     id="user-email"
                                     type="email"
@@ -152,7 +141,7 @@ class Register extends React.Component {
                                     required />
 
                                 <div className="text-danger">{this.state.errors.email}</div>
-                                <label htmlFor="user-password">&nbsp;Password</label>
+                                <label htmlFor="user-password">Password</label>
                                 <input
                                     id="user-password"
                                     className="form-content"
@@ -163,7 +152,7 @@ class Register extends React.Component {
                                     required />
 
                                 <div className="text-danger">{this.state.errors.password}</div>
-                                <label htmlFor="user-password">&nbsp;Confirm Password</label>
+                                <label htmlFor="user-password">Confirm Password</label>
                                 <input
                                     id="confirm-password"
                                     className="form-content"
@@ -178,7 +167,7 @@ class Register extends React.Component {
 
                             </form>
                         </div>
-                    </div>
+                    
                 </div>
             </div>
         );

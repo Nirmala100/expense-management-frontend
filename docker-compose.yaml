@@ -1,0 +1,9 @@
+version: "3.9"
+services:
+  react:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "6001:6001"

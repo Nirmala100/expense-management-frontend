@@ -1,9 +1,12 @@
 import featImg from "../assets/img-main.jpg";
 import {Link} from 'react-router-dom';
+import Navbar from "./layout/HomeNavbar";
+
 
 export default function Home({ title }) {
   return (
-    <div className="container">
+    <div className="App">
+      <Navbar/>
       <img
         className="img-feat"
         src={featImg}

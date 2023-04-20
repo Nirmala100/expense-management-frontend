@@ -1,8 +1,13 @@
-const URL = "http://localhost:8081/categories";
+import { baseUrl } from "./constant";
+import LoginApi from "./login";
 
 export default class CategoryApi {
+  constructor() {
+    this.url = `${baseUrl}/categories`;
+    this.loginApi = new LoginApi();
+  }
   getCategories() {
-    return fetch(URL, {
+    return fetch(this.url, {
       method: "GET",
       mode: "cors",
       headers: {
@@ -11,13 +16,14 @@ export default class CategoryApi {
       },
     })
       .then((response) => {
+        this.loginApi.validateLogin(response);
         return response.json();
       })
       .catch((error) => console.log(error));
   }
 
   updateCategory(category) {
-    const url = `${URL}/${category.id}`;
+    const url = `${this.url}/${category.id}`;
     return fetch(url, {
       method: "POST",
       mode: "cors",
@@ -27,13 +33,14 @@ export default class CategoryApi {
       },
       body: JSON.stringify(category)
     }).then((response) => {
+      this.loginApi.validateLogin(response);
       console.log("Category update response", response);
       return response.json();
     })
   }
 
   createCategory(category) {
-    return fetch(URL, {
+    return fetch(this.url, {
       method: "POST",
       mode: "cors",
       headers: {
@@ -42,13 +49,14 @@ export default class CategoryApi {
       },
       body: JSON.stringify(category)
     }).then((response) => {
+      this.loginApi.validateLogin(response);
       console.log("New category created", response);
       return response.json();
     })
   }
 
   deleteCategory(category) {
-    const url = `${URL}/${category.id}`;
+    const url = `${this.url}/${category.id}`;
     return fetch(url, {
       method: "DELETE",
       mode: "cors",
@@ -58,6 +66,7 @@ export default class CategoryApi {
       },
       body: JSON.stringify(category)
     }).then((response) => {
+      this.loginApi.validateLogin(response);
       console.log("Category deleted", response);
       return;
     })

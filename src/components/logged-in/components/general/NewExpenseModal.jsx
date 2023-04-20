@@ -6,11 +6,6 @@ export function NewExpenseModal() {
       <div class="modal-content">
         <ExpenseAdd />
       </div>
-      <div class="modal-footer">
-        <a href="#!" class="modal-close waves-effect waves-green btn-flat">
-          Agree
-        </a>
-      </div>
     </div>
   );
 }

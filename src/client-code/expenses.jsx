@@ -1,13 +1,19 @@
+import { baseUrl } from "./constant";
+import LoginApi from "./login";
+
 export default class ExpenseApi {
+  constructor() {
+    this.url = `${baseUrl}/expenses`;
+    this.loginApi = new LoginApi();
+  }
   getExpensesByFilter(fromDate, toDate) {
-    var url = "http://localhost:8081/expenses";
+    var url = `${this.url}`;
     if (fromDate && toDate) {
       url = url + "?" + new URLSearchParams({
         fromDate: fromDate,
         toDate: toDate
       });
     }
-   // console.log("Fetching from URL", url);
 
     return fetch(url, {
       method: "GET",
@@ -18,11 +24,31 @@ export default class ExpenseApi {
       },
     })
       .then((response) => {
+        this.loginApi.validateLogin(response);
         return response.json();
       })
       .catch((error) => {
         console.error(error);
         throw error;
       });
+  }
+
+  createNewExpense(newExpense) {
+    return fetch(this.url, {
+      method: "POST",
+      body: JSON.stringify({
+        name: newExpense.name,
+        categoryName: newExpense.categoryName,
+        price: newExpense.price,
+        date: newExpense.date,
+      }),
+      headers: {
+        "Authorization": `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+    .then((res) => {
+      this.loginApi.validateLogin(res);
+      return res.json()
+    });
   }
 }

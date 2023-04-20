@@ -13,26 +13,19 @@ export function LoggedInRouter() {
   useEffect(() => {
     var modals = document.querySelectorAll(".modal");
     var modalInstances = M.Modal.init(modals);
-   // console.log("Model initialized");
   }, []);
 
   return (
     <>
       <HeaderBar />
-      <div class="content-wrapper">
-        {/* <div class="container"> */}
-          <div class="row">
-            {/* <div class="col s12 m8 l9"> */}
-              <Routes>
-                <Route path="/" element={<Dashboard />} />
-                <Route path="categories" element={<CategoriesHome />} />
-                <Route path="categories/add" element={<CategoryAdd />} />
-                <Route path="about" element={<About />} />
-                <Route path="*" element={<h1 className="not-found">Page Not Found</h1>} />
-              </Routes>
-            {/* </div> */}
-          </div>
-        {/* </div> */}
+      <div className="content-wrapper">
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="categories" element={<CategoriesHome />} />
+          <Route path="categories/add" element={<CategoryAdd />} />
+          <Route path="about" element={<About />} />
+          <Route path="*" element={<h1 className="not-found">Page Not Found</h1>} />
+        </Routes>
       </div>
       <FloatingActionButton />
       <NewExpenseModal />

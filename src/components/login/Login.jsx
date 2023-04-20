@@ -2,6 +2,8 @@ import "./Login.css";
 import featImg from "../../assets/img-main.jpg";
 import React from "react";
 import { Link } from "react-router-dom";
+import { baseUrl } from "../../client-code/constant";
+import LoginApi from "../../client-code/login";
 
 class Login extends React.Component {
   constructor(props) {
@@ -13,6 +15,7 @@ class Login extends React.Component {
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.loginApi = new LoginApi();
   }
 
   handleInputChange(event) {
@@ -25,30 +28,13 @@ class Login extends React.Component {
 
   handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Email", this.state.email, "Pass", this.state.password);
     try {
-      let res = await fetch("http://localhost:8081/login", {
-        method: "POST",
-        body: JSON.stringify({
-          email: this.state.email,
-          password: this.state.password,
-        }),
-      });
-      let resJson = await res.json();
-      if (res.status === 200 && resJson.token !== undefined) {
-        console.log("success");
-        console.log(resJson.token);
-        //store token locally
-        localStorage.setItem("token", resJson.token);
-        this.props.onLoginSuccess(resJson.token);
-      } else {
-        console.log(resJson.error);
-        this.setState({
-          error: resJson.error,
-        });
-      }
+      let res = await this.loginApi.login(this.state.email, this.state.password);
+      this.props.onLoginSuccess(res.token);
     } catch (err) {
-      console.log(err);
+      this.setState({
+        error: err.message,
+      });
     }
   };
 

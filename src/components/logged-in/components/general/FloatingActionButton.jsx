@@ -9,24 +9,24 @@ export function FloatingActionButton() {
   }, []);
 
   return (
-    <div class="fixed-action-btn">
-      <a class="btn-floating btn-large red modal-trigger" href="#new-expense-model">
-        <i class="large material-icons">add</i>
+    <div className="fixed-action-btn">
+      <a className="btn-floating btn-large red modal-trigger" href="#new-expense-model">
+        <i className="large material-icons">add</i>
       </a>
       <ul>
         <li>
-          <Link to="dashboard" class="btn-floating red">
-            <i class="material-icons">mode_edit</i>
+          <Link to="dashboard" className="btn-floating red">
+            <i className="material-icons">mode_edit</i>
           </Link>
         </li>
         <li>
-          <Link to="categories" class="btn-floating green darken-1">
-            <i class="material-icons">apps</i>
+          <Link to="categories" className="btn-floating green darken-1">
+            <i className="material-icons">apps</i>
           </Link>
         </li>
         <li>
-          <Link to="expenses/add" class="btn-floating blue">
-            <i class="material-icons">insert_chart</i>
+          <Link to="expenses/add" className="btn-floating blue">
+            <i className="material-icons">insert_chart</i>
           </Link>
         </li>
       </ul>

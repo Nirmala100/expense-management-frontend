@@ -1,13 +1,11 @@
-import { useEffect } from "react";
 import "./HeaderBar.css";
-import { Link, useNavigate } from "react-router-dom";
+import LoginApi from "../../../../client-code/login";
 
 export function HeaderBar() {
-  let navigate = useNavigate();
+  let loginApi = new LoginApi();
 
   function handleLogOut() {
-    localStorage.clear();
-    navigate("/login");
+    loginApi.logout();
   }
 
   return (

@@ -1,35 +1,29 @@
 import React from "react";
-import M from "materialize-css";
-import ExpenseApi from "../../../../client-code/expenses";
 
 class Expenses extends React.Component {
   constructor(props) {
     super(props);
-    // this.state = {
-    //   fromDate: undefined,
-    //   toDate: undefined,
-    // };
   }
-
- 
 
   render() {
     return (
       <div>
-        <table className="striped">
+        <table className="highlight centered responsive-table">
           <thead>
             <tr>
-              <th>Expense</th>
+              <th>Date</th>
               <th>Category</th>
+              <th>Name</th>
               <th>Price</th>
             </tr>
           </thead>
           <tbody>
             {this.props.expenses.map(expense => (
               <tr key={expense.id}>
-                <td>{expense.name}</td>
+                <td>{(new Date(expense.date * 1000)).toLocaleString('default', { day: 'numeric', month: 'short' })}</td>
                 <td>{expense.categoryName}</td>
-                <td>{expense.price}</td>
+                <td>{expense.name}</td>
+                <td>{Math.round(expense.price * 100) / 100}</td>
               </tr>
             ))}
           </tbody>

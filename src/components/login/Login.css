@@ -28,3 +28,14 @@
     margin: 0 auto;
     color: #425b44;
 }
+
+.card-container-signup {
+  display: flex;
+  flex-direction: row;
+  background-color: #fff;
+  width: 80vh;
+}
+.card-container-signup > .col {
+  flex: 1 1 auto;
+  width: 50%;
+}

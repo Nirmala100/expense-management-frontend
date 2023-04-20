@@ -6,8 +6,8 @@ export default class Search extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            fromDate: undefined,
-            toDate: undefined,
+            fromDate: props.fromDate,
+            toDate: props.toDate,
         };
     }
 

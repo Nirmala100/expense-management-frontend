@@ -1,0 +1,23 @@
+.nav-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+.navigation {
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    align-items: center;
+}
+.navigation i {
+    color: #9f9f9f;
+    cursor: pointer;
+}
+
+.navigation i:hover {
+    color: #136f6d;
+}
+
+.row {
+    background-color: white;
+}
