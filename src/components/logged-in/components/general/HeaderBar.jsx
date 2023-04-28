@@ -15,7 +15,7 @@ export function HeaderBar() {
           <div className="col s3 logo">
             <i className="small material-icons">account_balance_wallet</i>
             <span>
-              <a href="#!">Nemo</a>
+              <a href="/dashboard">Nemo</a>
             </span>
           </div>
           <div className="col s8 menu">

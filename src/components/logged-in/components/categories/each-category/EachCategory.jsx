@@ -1,5 +1,6 @@
 import React from "react";
 import './EachCategory.css';
+import { Link } from "react-router-dom";
 
 export default class EachCategory extends React.Component {
   constructor(props) {
@@ -25,9 +26,9 @@ export default class EachCategory extends React.Component {
 
     return (
       <div className="collection-container">
-        <div className="indentation" />
+        <div className="indentation" /> 
         <div className="icon"><i className="material-icons">{this.props.category.icon}</i></div>
-        <div className="text">{this.props.category.name}</div>
+        <div className="text"><Link to={`/dashboard/expenses?category=${this.props.category.name}`}>{this.props.category.name}</Link></div>
         <div className="menu">
           {menu.map(menu => menu)}
         </div>

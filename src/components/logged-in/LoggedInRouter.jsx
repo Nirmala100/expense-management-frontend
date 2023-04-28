@@ -8,6 +8,7 @@ import { FloatingActionButton } from "./components/general/FloatingActionButton"
 import CategoriesHome from "./components/categories/CategoriesHome";
 import { NewExpenseModal } from "./components/general/NewExpenseModal";
 import { useEffect } from "react";
+import SingleCategoryExpenses from "./components/categories/each-category/SingleCategoryExpenses";
 
 export function LoggedInRouter() {
   useEffect(() => {
@@ -23,6 +24,7 @@ export function LoggedInRouter() {
           <Route path="/" element={<Dashboard />} />
           <Route path="categories" element={<CategoriesHome />} />
           <Route path="categories/add" element={<CategoryAdd />} />
+          <Route path="expenses" element={<SingleCategoryExpenses />} />
           <Route path="about" element={<About />} />
           <Route path="*" element={<h1 className="not-found">Page Not Found</h1>} />
         </Routes>
