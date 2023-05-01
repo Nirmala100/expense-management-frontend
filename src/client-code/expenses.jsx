@@ -6,7 +6,7 @@ export default class ExpenseApi {
     this.url = `${baseUrl}/expenses`;
     this.loginApi = new LoginApi();
   }
-  getExpensesByFilter(fromDate, toDate) {
+  getExpensesByDateFilter(fromDate, toDate) {
     var url = `${this.url}`;
     if (fromDate && toDate) {
       url = url + "?" + new URLSearchParams({
@@ -14,7 +14,20 @@ export default class ExpenseApi {
         toDate: toDate
       });
     }
+    return this.fetchExpenses(url);
+  }
 
+  getExpensesByCategoryFilter(categoryName) {
+    var url = `${this.url}`;
+    if (categoryName) {
+      url = url + "?" + new URLSearchParams({
+        category: categoryName
+      });
+    }
+    return this.fetchExpenses(url);
+  }
+
+  fetchExpenses(url) {
     return fetch(url, {
       method: "GET",
       mode: "cors",

@@ -5,7 +5,7 @@ import { useEffect } from "react";
 export function FloatingActionButton() {
   useEffect(() => {
     var elems = document.querySelectorAll(".fixed-action-btn");
-    var instances = M.FloatingActionButton.init(elems);
+    M.FloatingActionButton.init(elems);
   }, []);
 
   return (

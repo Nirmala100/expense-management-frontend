@@ -23,14 +23,14 @@ export function HeaderBar() {
             {/* <Link to="account">Account</Link> */}
           </div>
           <div className="col s1 dropdown">
-              <div className="dropdown-showable">
-                <i className="small material-icons">account_circle</i>
-              </div>
-              <div className="dropdown-hidden-menu">
-                <a href="#">Profile Settings</a>
-                <a href="#" onClick={handleLogOut}>Logout</a>
-              </div>
+            <div className="dropdown-showable">
+              <i className="small material-icons">account_circle</i>
             </div>
+            <div className="dropdown-hidden-menu">
+              <a href="/dashboard/profile">Profile Settings</a>
+              <a href="#" onClick={handleLogOut}>Logout</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -8,12 +8,13 @@ import { FloatingActionButton } from "./components/general/FloatingActionButton"
 import CategoriesHome from "./components/categories/CategoriesHome";
 import { NewExpenseModal } from "./components/general/NewExpenseModal";
 import { useEffect } from "react";
-import SingleCategoryExpenses from "./components/categories/each-category/SingleCategoryExpenses";
+import SingleCategoryExpenses from "./components/dashboard/SingleCategoryExpenses";
+import ProfileSettingsHome from "./components/profile-settings/ProfileSettingsHome";
 
 export function LoggedInRouter() {
   useEffect(() => {
     var modals = document.querySelectorAll(".modal");
-    var modalInstances = M.Modal.init(modals);
+    M.Modal.init(modals);
   }, []);
 
   return (
@@ -25,6 +26,7 @@ export function LoggedInRouter() {
           <Route path="categories" element={<CategoriesHome />} />
           <Route path="categories/add" element={<CategoryAdd />} />
           <Route path="expenses" element={<SingleCategoryExpenses />} />
+          <Route path="profile" element={<ProfileSettingsHome />} />
           <Route path="about" element={<About />} />
           <Route path="*" element={<h1 className="not-found">Page Not Found</h1>} />
         </Routes>

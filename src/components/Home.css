@@ -1,0 +1,21 @@
+.big-image {
+    min-height: 85vh;
+    background: url(../assets/img-main.jpg) #b9d2cf no-repeat center center fixed;
+    background-size: cover;
+    opacity: 0.8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer {
+    min-height: 15vh;
+    background: #b9d2cf;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-container {
+    color: #696969;
+}

@@ -91,15 +91,15 @@ class ExpenseAdd extends React.Component {
           <h3>Add Expense</h3>
           <h1>{this.state.error}</h1>
 
-          <div class="input-field col s12">
+          <div className="input-field col s12">
             <input id="name" type="text" name="name" value={this.state.name} onChange={this.handleInputChange} autoComplete="on" required />
-            <label htmlFor="name" class="autocomplete" >Expense</label>
+            <label htmlFor="name" className="autocomplete" >Expense</label>
           </div>
           <br />
 
-          <div class="input-field col s12">
+          <div className="input-field col s12">
             <select defaultValue="none" onChange={this.handleInputChange} name="category" id="category">
-              <option value="none" disabled selected>Choose your option</option>
+              <option value="none" disabled>Choose your option</option>
               {this.state.categories.map(option =>
                 <option value={option.name} key={option.name}>{option.name}</option>
               )}
@@ -108,13 +108,13 @@ class ExpenseAdd extends React.Component {
           </div>
           <br />
 
-          <div class="input-field col s12" >
+          <div className="input-field col s12" >
             <input id="price" type="text" name="price" value={this.state.price} onChange={this.handleInputChange} autoComplete="on" required />
             <label htmlFor="price">Price</label>
           </div>
           <br />
 
-          <div class="input-field col s12" >
+          <div className="input-field col s12" >
             <input
               id="date" name="date"
               type="text"

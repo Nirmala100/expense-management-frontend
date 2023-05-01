@@ -1,5 +1,4 @@
 import React from "react";
-import featImg from "../../assets/img-main.jpg";
 import { baseUrl } from "../../client-code/constant";
 
 class Register extends React.Component {
@@ -46,8 +45,8 @@ class Register extends React.Component {
                     let errors = {};
                     errors["email"] = resJson.error;
                     this.setState({
-                        
-                        errors : errors,
+
+                        errors: errors,
                     });
                 }
             } catch (err) {
@@ -111,63 +110,67 @@ class Register extends React.Component {
                 <div className="card-container-signup z-depth-4">
                     <div className="col image">
                         <div className="image-container">
-                            <img className="img-feat" src={featImg} />
+                            <div><i className="large material-icons">account_balance_wallet</i></div>
+                            <div>
+                                <i className="tiny material-icons">add_alert</i>
+                                Track your money
+                            </div>
                         </div>
-                      </div>  
-                        <div className="col">
-                            <form method="post" className="form" onSubmit={this.handleSubmit}>
-                                <h1>Sign up</h1>
-                                <h1>{this.state.errors.email}</h1>
-                                
-                                <label htmlFor="user-name">Name</label>
-                                <input
-                                    id="user-name"
-                                    type="text"
-                                    name="name"
-                                    value={this.state.input.name}
-                                    onChange={this.handleInputChange}
-                                    autoComplete="on"
-                                />
+                    </div>
+                    <div className="col">
+                        <form method="post" className="form" onSubmit={this.handleSubmit}>
+                            <h1>Sign up</h1>
+                            <h1>{this.state.errors.email}</h1>
 
-                                <div className="text-danger">{this.state.errors.name}</div>
-                                <label htmlFor="user-email">Email</label>
-                                <input
-                                    id="user-email"
-                                    type="email"
-                                    name="email"
-                                    value={this.state.input.email}
-                                    onChange={this.handleInputChange}
-                                    autoComplete="on"
-                                    required />
+                            <label htmlFor="user-name">Name</label>
+                            <input
+                                id="user-name"
+                                type="text"
+                                name="name"
+                                value={this.state.input.name}
+                                onChange={this.handleInputChange}
+                                autoComplete="on"
+                            />
 
-                                <div className="text-danger">{this.state.errors.email}</div>
-                                <label htmlFor="user-password">Password</label>
-                                <input
-                                    id="user-password"
-                                    className="form-content"
-                                    value={this.state.input.password}
-                                    onChange={this.handleInputChange}
-                                    type="password"
-                                    name="password"
-                                    required />
+                            <div className="text-danger">{this.state.errors.name}</div>
+                            <label htmlFor="user-email">Email</label>
+                            <input
+                                id="user-email"
+                                type="email"
+                                name="email"
+                                value={this.state.input.email}
+                                onChange={this.handleInputChange}
+                                autoComplete="on"
+                                required />
 
-                                <div className="text-danger">{this.state.errors.password}</div>
-                                <label htmlFor="user-password">Confirm Password</label>
-                                <input
-                                    id="confirm-password"
-                                    className="form-content"
-                                    value={this.state.input.confirm_password}
-                                    onChange={this.handleInputChange}
-                                    type="password"
-                                    name="confirm_password"
-                                    required />
+                            <div className="text-danger">{this.state.errors.email}</div>
+                            <label htmlFor="user-password">Password</label>
+                            <input
+                                id="user-password"
+                                className="form-content"
+                                value={this.state.input.password}
+                                onChange={this.handleInputChange}
+                                type="password"
+                                name="password"
+                                required />
 
-                                <div className="text-danger">{this.state.errors.confirm_password}</div>
-                                <input id="submit-btn" type="submit" name="submit" value="REGISTER" />
+                            <div className="text-danger">{this.state.errors.password}</div>
+                            <label htmlFor="user-password">Confirm Password</label>
+                            <input
+                                id="confirm-password"
+                                className="form-content"
+                                value={this.state.input.confirm_password}
+                                onChange={this.handleInputChange}
+                                type="password"
+                                name="confirm_password"
+                                required />
 
-                            </form>
-                        </div>
-                    
+                            <div className="text-danger">{this.state.errors.confirm_password}</div>
+                            <input id="submit-btn" type="submit" name="submit" value="REGISTER" />
+
+                        </form>
+                    </div>
+
                 </div>
             </div>
         );

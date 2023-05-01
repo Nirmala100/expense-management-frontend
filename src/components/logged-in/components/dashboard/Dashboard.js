@@ -4,6 +4,7 @@ import BarGraph from "./BarGraph";
 import ExpenseApi from "../../../../client-code/expenses";
 import Expenses from "./Expenses";
 import './Dashboard.css';
+import { Link } from "react-router-dom";
 
 export default class Dashboard extends React.Component {
   constructor(props) {
@@ -73,7 +74,7 @@ export default class Dashboard extends React.Component {
     // set the state
     const fromDateMs = this.toMilliseconds(fromDate);
     const toDateMs = this.toMilliseconds(toDate);
-    new ExpenseApi().getExpensesByFilter(fromDateMs, toDateMs)
+    new ExpenseApi().getExpensesByDateFilter(fromDateMs, toDateMs)
       .then(resJson => {
         return {
           barData: this.processBarChartData(resJson),
@@ -154,9 +155,9 @@ export default class Dashboard extends React.Component {
     if (!this.state.barChartData || !this.state.pieChartData) {
       // Case when there is no data. Don't display data
       dashboardElements.push(
-        <div className="row">
+        <div className="row dashboard-row" key="no-data">
           <div className="col s12">
-            <div style={ {padding: "20px"} }>
+            <div style={{ padding: "20px" }}>
               No data available for the period
             </div>
           </div>
@@ -164,38 +165,40 @@ export default class Dashboard extends React.Component {
       );
     } else {
       // Push each dashboard component for rendering when data is present
-      dashboardElements.push(<div className="row">
-        <div className="col s6">
-          <PieChart data={this.state.pieChartData} />
-        </div>
-        <div className="col s6">
-          <table>
-            <thead>
-              <tr>
-                <th>Category</th>
-                <th>Total</th>
-              </tr>
-            </thead>
-            <tbody>
-              {this.state.pieChartData && [...this.state.pieChartData].splice(1).map(pie =>
-                <tr key={pie[0]}>
-                  <td>{pie[0]}</td>
-                  <td>{Math.round(pie[1] * 100) / 100}</td>
-                </tr>
-              )}
-            </tbody>
-          </table>
-        </div>
-      </div>);
       dashboardElements.push(
-        <div className="row">
+        <div className="row dashboard-row" key="sum-by-category">
+          <div className="col s6">
+            <PieChart data={this.state.pieChartData} />
+          </div>
+          <div className="col s6">
+            <table>
+              <thead>
+                <tr>
+                  <th>Category</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                {this.state.pieChartData && [...this.state.pieChartData].splice(1).map(pie =>
+                  <tr key={pie[0]}>
+                    <td><Link to={`/dashboard/expenses?category=${pie[0]}`} key="blah">{pie[0]}</Link></td>
+                    <td>{Math.round(pie[1] * 100) / 100}</td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      );
+      dashboardElements.push(
+        <div className="row dashboard-row" key="bar-chart">
           <div className="col s12">
             <BarGraph data={this.state.barChartData} />
           </div>
         </div>
       );
       dashboardElements.push(
-        <div className="row">
+        <div className="row dashboard-row" key="expense-list">
           <Expenses expenses={this.state.expenses} />
         </div>
       );

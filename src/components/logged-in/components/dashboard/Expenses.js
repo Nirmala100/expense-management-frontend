@@ -6,9 +6,12 @@ class Expenses extends React.Component {
   }
 
   render() {
-    return (
-      <div>
-        <table className="highlight centered responsive-table">
+    const hasExpenses = this.props.expenses && this.props.expenses.length > 0;
+
+    let htmlElement;
+    if (hasExpenses) {
+      htmlElement = (
+        <table className="highlight centered">
           <thead>
             <tr>
               <th>Date</th>
@@ -28,6 +31,17 @@ class Expenses extends React.Component {
             ))}
           </tbody>
         </table>
+      );
+    } else {
+      htmlElement = (
+        <div className="highlight centered">
+          No expenses found
+        </div>
+      );
+    }
+    return (
+      <div>
+        {htmlElement}
       </div>
     );
   }
