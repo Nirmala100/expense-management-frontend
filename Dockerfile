@@ -7,6 +7,6 @@ COPY . .
 RUN npm run build
 
 FROM joseluisq/static-web-server:2
-COPY --from=build /app/build /app
+COPY --from=build /app/build /app/expenses
 EXPOSE 6001
-CMD ["--port", "6001", "--root", "/app", "--page-fallback", "/app/index.html"]
+CMD ["--port", "6001", "--root", "/app", "--page-fallback", "/app/expenses/index.html"]

@@ -1,5 +1,6 @@
 import "./HeaderBar.css";
 import LoginApi from "../../../../client-code/login";
+import { Link } from "react-router-dom";
 
 export function HeaderBar() {
   let loginApi = new LoginApi();
@@ -15,7 +16,7 @@ export function HeaderBar() {
           <div className="col s3 logo">
             <i className="small material-icons">account_balance_wallet</i>
             <span>
-              <a href="/dashboard">Nemo</a>
+              <Link replace to="/dashboard">Nemo</Link>
             </span>
           </div>
           <div className="col s8 menu">
@@ -27,7 +28,7 @@ export function HeaderBar() {
               <i className="small material-icons">account_circle</i>
             </div>
             <div className="dropdown-hidden-menu">
-              <a href="/dashboard/profile">Profile Settings</a>
+              <Link replace to="/dashboard/profile">Profile Settings</Link>
               <a href="#" onClick={handleLogOut}>Logout</a>
             </div>
           </div>

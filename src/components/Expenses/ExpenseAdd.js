@@ -78,7 +78,7 @@ class ExpenseAdd extends React.Component {
             error: resJson.error,
           });
         } else {
-          window.location.href = '/dashboard';
+          window.location.href = '/expenses/dashboard';
         }
       })
   };

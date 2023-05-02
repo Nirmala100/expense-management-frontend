@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './Home.css'
 
 
@@ -18,9 +19,9 @@ export default function Home({ title }) {
                 <p>The new way to track your expenses and manage your finance. Coming soon to the App Store.  </p>
               </div>
               <div className="section">
-                <a class="waves-effect waves-light btn-large" href="/login">Login</a>
+                <Link class="waves-effect waves-light btn-large" to="login">Login</Link>
                 &nbsp;&nbsp;&nbsp;
-                <a class="waves-effect waves-light btn-large" href="/register">Signup</a>
+                <Link class="waves-effect waves-light btn-large" to="register">Signup</Link>
               </div>
             </div>
           </div>
