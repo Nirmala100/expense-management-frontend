@@ -49,7 +49,7 @@ export default class LoginApi {
       },
     })
       .then((response) => {
-        // this.loginApi.validateLogin(response);
+        this.validateLogin(response);
         return response.json();
       })
       .catch((error) => console.log(error));
@@ -66,7 +66,7 @@ export default class LoginApi {
       },
       body: JSON.stringify(password)
     }).then((response) => {
-      this.loginApi.validateLogin(response);
+      this.validateLogin(response);
       console.log("User Password update response", response);
       return response.json();
     })

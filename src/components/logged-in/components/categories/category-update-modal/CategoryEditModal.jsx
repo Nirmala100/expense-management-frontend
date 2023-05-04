@@ -130,7 +130,7 @@ export default class CategoryUpdateModal extends React.Component {
   toTitleCase(str) {
     return str.replace(
       /\w\S*/g,
-      function(txt) {
+      function (txt) {
         return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
       }
     );
@@ -138,14 +138,14 @@ export default class CategoryUpdateModal extends React.Component {
 
   render() {
     return (
-      <div id="editCategoryModal" class="modal" ref={this.modalElement}>
-        <div class="modal-content model-container">
+      <div id="editCategoryModal" className="modal" ref={this.modalElement}>
+        <div className="modal-content model-container">
           <ChooseIcon icons={this.icons} value={this.state.categoryIcon} onChange={this.categoryIconChanged} />
           <input placeholder="Name" type="text" value={this.state.categoryName} onChange={this.categoryNameChanged}></input>
           <p></p>
         </div>
-        <div class="modal-footer">
-          <button class="waves-effect waves-green btn-flat" onClick={this.categorySaveButtonClicked}>Save</button>
+        <div className="modal-footer">
+          <button className="waves-effect waves-green btn-flat" onClick={this.categorySaveButtonClicked}>Save</button>
         </div>
       </div>
     );

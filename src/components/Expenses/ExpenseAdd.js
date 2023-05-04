@@ -28,7 +28,7 @@ class ExpenseAdd extends React.Component {
   componentDidMount() {
     this.categoriesApi.getCategories()
       .then((data) => {
-        // console.log(data);
+        //console.log(data);
         this.setState((state, props) => ({
           categories: data,
 
