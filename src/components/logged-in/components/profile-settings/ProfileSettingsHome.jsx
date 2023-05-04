@@ -1,11 +1,47 @@
+
 import React from "react";
 import profile from "../../../../assets/profile-image.jpeg"
 import "./ProfileSettingsHome.css"
+import LoginApi from "../../../../client-code/login";
 
 export default class ProfileSettingsHome extends React.Component {
   constructor(props) {
     super(props);
+    this.api = new LoginApi();
+    this.state = {
+      email: "",
+      name: "",
+      error: "",
+      password: "",
+    };
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
+
+  componentDidMount() {
+    this.fetchUserData();
+  }
+
+  fetchUserData = () => {
+    console.log("Fetching user details")
+    this.api.getUserDetails().then((data) => {
+      console.log(data);
+      this.setState({
+        email: data.email,
+        name: data.name,
+        password: data.password,
+      });
+    });
+  }
+
+  handleInputChange(event) {
+    event.preventDefault();
+    const target = event.target;
+    this.setState({
+      [target.name]: target.value,
+    });
+  }
+
+
 
   render() {
     return (
@@ -13,7 +49,7 @@ export default class ProfileSettingsHome extends React.Component {
         <div className="row">
           <div className="col s3">
             <div className="profile">
-              <p className="name">Nirmala Shrestha</p>
+              <p className="name">{this.state.name}</p>
               <img src="https://placehold.co/200x200/707070/FFFFFF/png" />
               <p className="since">Member since: <strong>Jan 01, 1990</strong></p>
             </div>
@@ -26,27 +62,33 @@ export default class ProfileSettingsHome extends React.Component {
               <div className="editor-box">
                 <div className="row">
                   <div className="col s6">
-                    <p>Name: Nirmala Shrestha </p>
+                    <label htmlFor="user-name">Name:</label>
+                    <p>{this.state.name} </p>
                     <label htmlFor="user-password">Password</label>
                     <input
                       id="user-password"
                       className="form-content"
-                      value=""
+                      style={{ border: "3px solid #e1f1f2" }}
+                      //  value={this.state.password}
                       type="password"
                       name="password"
+                      onChange={this.handleInputChange}
                       required />
-                    <input id="submit-btn" type="submit" name="submit" value="CHANGE PASSWORD" />
+                    <br />
+                    <input id="submit-btn" type="submit" name="submit" value="CHANGE PASSWORD" style={{ width: "20vh" }} />
                   </div>
                   <div className="col s6">
-                    <p>Email: nemo@gmail.com</p>
+                    <label htmlFor="user-email">Email</label>
+                    <p> {this.state.email}</p>
                     <label htmlFor="user-password">Confirm Password</label>
                     <input
                       id="confirm-password"
                       className="form-content"
-                      value=""
-
+                      // value={this.state.password}
+                      style={{ border: "3px solid #e1f1f2" }}
                       type="password"
                       name="confirm_password"
+                      onChange={this.handleInputChange}
                       required />
                   </div>
                 </div>

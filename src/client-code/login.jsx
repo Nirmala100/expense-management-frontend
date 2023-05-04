@@ -38,4 +38,37 @@ export default class LoginApi {
       this.logout();
     }
   }
+
+  getUserDetails() {
+    return fetch(`${baseUrl}/user`, {
+      method: "GET",
+      mode: "cors",
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+      .then((response) => {
+        // this.loginApi.validateLogin(response);
+        return response.json();
+      })
+      .catch((error) => console.log(error));
+  }
+
+  updatePassword(password) {
+    const url = `${this.url}`;
+    return fetch(url, {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      body: JSON.stringify(password)
+    }).then((response) => {
+      this.loginApi.validateLogin(response);
+      console.log("User Password update response", response);
+      return response.json();
+    })
+  }
 }
