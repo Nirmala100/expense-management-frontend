@@ -1,9 +1,24 @@
 import React from "react";
+import EachExpense from "../../../Expenses/EachExpense";
+
 
 class Expenses extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      //categories: [],
+      expenseOnEdit: undefined,
+      // categoryOnDelete: undefined,
+    };
   }
+
+  editClicked = (expense) => {
+    console.log(expense);
+    this.setState({
+      expenseOnEdit: expense
+    });
+  }
+
 
   render() {
     const hasExpenses = this.props.expenses && this.props.expenses.length > 0;
@@ -18,16 +33,12 @@ class Expenses extends React.Component {
               <th>Category</th>
               <th>Name</th>
               <th>Price</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
             {this.props.expenses.map(expense => (
-              <tr key={expense.id}>
-                <td>{(new Date(expense.date * 1000)).toLocaleString('default', { day: 'numeric', month: 'short' })}</td>
-                <td>{expense.categoryName}</td>
-                <td>{expense.name}</td>
-                <td>{Math.round(expense.price * 100) / 100}</td>
-              </tr>
+              <EachExpense key={expense.id} expense={expense} onEditClicked={this.editClicked} />
             ))}
           </tbody>
         </table>

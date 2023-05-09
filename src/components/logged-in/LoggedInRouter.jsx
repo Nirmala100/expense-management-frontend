@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import SingleCategoryExpenses from "./components/dashboard/SingleCategoryExpenses";
 import ProfileSettingsHome from "./components/profile-settings/ProfileSettingsHome";
 
+
 export function LoggedInRouter() {
   useEffect(() => {
     var modals = document.querySelectorAll(".modal");
@@ -33,6 +34,7 @@ export function LoggedInRouter() {
       </div>
       <FloatingActionButton />
       <NewExpenseModal />
+
     </>
   );
 }

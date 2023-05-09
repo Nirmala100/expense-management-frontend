@@ -59,9 +59,31 @@ export default class ExpenseApi {
         "Authorization": `Bearer ${localStorage.getItem('token')}`
       }
     })
-    .then((res) => {
-      this.loginApi.validateLogin(res);
-      return res.json()
-    });
+      .then((res) => {
+        this.loginApi.validateLogin(res);
+        return res.json()
+      });
   }
+
+  updateExpense(expense, id) {
+    const expenseId = id;
+    return fetch(`${this.url}/` + expenseId, {
+      method: "POST",
+      body: JSON.stringify({
+        name: expense.name,
+        categoryName: expense.categoryName,
+        price: expense.price,
+        date: expense.date,
+      }),
+      headers: {
+        "Authorization": `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+      .then((res) => {
+        this.loginApi.validateLogin(res);
+        return res.json()
+      });
+  }
+
+
 }
