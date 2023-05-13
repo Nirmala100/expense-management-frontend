@@ -2,14 +2,13 @@ import React from "react";
 import M from "materialize-css";
 import CategoryApi from "../../client-code/categories";
 import ExpenseApi from "../../client-code/expenses";
-import { useNavigate } from "react-router-dom";
-
 
 
 class ExpenseUpdate extends React.Component {
 
   constructor(props) {
     super(props);
+    this.modalElement = React.createRef();
     //set initial state to value passed by props
     this.state = {
       name: props.expense.name,
@@ -18,6 +17,7 @@ class ExpenseUpdate extends React.Component {
       date: Math.floor(new Date().getTime() / 1000),
       error: "",
       categories: [],
+      isOpen: true,
 
     };
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -26,11 +26,26 @@ class ExpenseUpdate extends React.Component {
     this.expensesApi = new ExpenseApi();
   }
 
+  modelClosed = () => {
+    //console.log("Propagating modal closed");
+    this.setState({
+      isOpen: false,
+    });
+    this.modal.close();
+    this.modal.destroy();
+    this.props.onModalClosed();
+  }
 
 
 
   //to initialize materialize css select
-  componentDidMount() {
+  componentDidMount = () => {
+    this.modal = M.Modal.init(this.modalElement.current, {
+      onCloseEnd: this.modalClosed,
+      dismissible: false,
+    });
+    this.state.isOpen ? this.modal.open() : this.modal.close();
+    // console.log("modals ", this.modalElement);
     this.categoriesApi.getCategories()
       .then((data) => {
         //console.log(data);
@@ -59,6 +74,10 @@ class ExpenseUpdate extends React.Component {
   }
 
 
+  componentDidUpdate() {
+    //console.log("COmponent did updated", this.state.isOpen);
+    this.state.isOpen ? this.modal.open() : this.modal.close();
+  }
 
   handleInputChange(event) {
     event.preventDefault();
@@ -69,8 +88,8 @@ class ExpenseUpdate extends React.Component {
   }
 
   handleSubmit = async (e) => {
-    // const navigate = useNavigate();
     e.preventDefault();
+    // console.log("Submitting updated expense");
     this.expensesApi.updateExpense({
       id: this.props.expense.id,
       name: this.state.name,
@@ -85,9 +104,7 @@ class ExpenseUpdate extends React.Component {
             error: resJson.error,
           });
         } else {
-
-          // navigate(-1);
-          window.location.href = '/expenses/dashboard';
+          this.modelClosed();
         }
       })
   };
@@ -96,7 +113,7 @@ class ExpenseUpdate extends React.Component {
 
     return (
 
-      <div id="update-expense-modal" className="modal">
+      <div id="update-expense-modal" className="modal" ref={this.modalElement}>
         <div className="modal-content">
           <form method="post" className="form" onSubmit={this.handleSubmit}>
             <h3>Update Expense</h3>
@@ -105,6 +122,7 @@ class ExpenseUpdate extends React.Component {
             <div className="input-field col s12">
               <input id="name" type="text" name="name" value={this.state.name} onChange={this.handleInputChange} autoComplete="on" required />
               <label htmlFor="name" className="autocomplete" >Expense</label>
+
             </div>
             <br />
 
@@ -135,8 +153,11 @@ class ExpenseUpdate extends React.Component {
               <label htmlFor="date">Date</label>
             </div>
             <br />
+            <div className="row" >
+              <input id="submit-btn" type="submit" name="submit" value="UPDATE" className="btn" />
+              <a className="waves-effect waves-light btn" onClick={this.modelClosed}>Cancel</a>
+            </div>
 
-            <input id="submit-btn" type="submit" name="submit" value="UPDATE" />
 
           </form>
         </div>

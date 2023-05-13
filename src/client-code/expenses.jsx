@@ -85,5 +85,23 @@ export default class ExpenseApi {
       });
   }
 
+  fetchOneExpense(id) {
+    return fetch(`${this.url}/` + id, {
+      method: "GET",
+      mode: "cors",
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+      .then((response) => {
+        this.loginApi.validateLogin(response);
+        return response.json();
+      })
+      .catch((error) => {
+        console.error(error);
+        throw error;
+      });
+  }
 
 }

@@ -40,6 +40,10 @@ export default class Dashboard extends React.Component {
   }
 
   componentDidMount() {
+    this.reloadData();
+  }
+
+  reloadData = () => {
     this.triggerSearch(this.state.fromDate, this.state.toDate);
   }
 
@@ -199,7 +203,7 @@ export default class Dashboard extends React.Component {
       );
       dashboardElements.push(
         <div className="row dashboard-row" key="expense-list">
-          <Expenses expenses={this.state.expenses} />
+          <Expenses expenses={this.state.expenses} onReload={this.reloadData} />
         </div>
       );
     }
