@@ -14,15 +14,17 @@ export default class LoginApi {
         password: password,
       }),
     }).then(res => {
-      if (res.status === 403) {
-        throw new Error("User not found");
-      } else if (res.status != 200) {
-        throw new Error("Server error");
-      }
-      return res.json();
+      const resJson = res.json();
+      // console.log("Login message", resJson);
+      // if (res.status != 200) {
+      //   throw new Error(resJson.error);
+      // }
+      return resJson;
     }).then(resJson => {
       if (resJson.token !== undefined) {
         localStorage.setItem("token", resJson.token);
+      } else if (resJson.error !== undefined) {
+        throw new Error(resJson.error);
       }
       return resJson;
     });
@@ -56,7 +58,7 @@ export default class LoginApi {
   }
 
   updatePassword(password) {
-    const url = `${this.url}`;
+    const url = `${baseUrl}/user/update`;
     return fetch(url, {
       method: "POST",
       mode: "cors",

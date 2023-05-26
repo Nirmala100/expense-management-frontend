@@ -44,11 +44,11 @@ class Login extends React.Component {
         <div className="card-container z-depth-4">
           <div className="col image">
             <div className="image-container">
-                <div><i className="large material-icons">account_balance_wallet</i></div>
-                <div>
-                    <i className="tiny material-icons">add_alert</i>
-                    Track your money
-                </div>
+              <div><i className="large material-icons">account_balance_wallet</i></div>
+              <div>
+                <i className="tiny material-icons">add_alert</i>
+                Track your money
+              </div>
             </div>
           </div>
           <div className="col">
